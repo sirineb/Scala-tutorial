@@ -67,7 +67,7 @@ A case class is good for modeling immutable data. It is useful for pattern match
 ### sealed class 
 sealed class can only be inherited if the child class is defined in the same source file. 
 
-### C’est quoi «For-Comprehension» ? 
+### For-Comprehension
 Comprehensions have the form for (enumerators) yield e, where enumerators refer to a semicolon-separated list of enumerators. An enumerator is either a generator which introduces new variables, or a filter. The for loop used with a yield statement actually creates a List. 
 ```
 case class User(name: String, age: Int)
@@ -75,3 +75,8 @@ val userBase = List(User("Travis", 28), User("Kelly", 33), User("Jennifer", 44))
 val twentySomethings = for (user <- userBase if (user.age >=20 && user.age < 30))
 yield user.name 
 ```
+### implicit 
+It helps solve type ambiguity or non declared parameters. There are two types of implicit: 
+* implicit parameters: considering a function that has the keyword “implicit” placed before its arguments. When such a function is called without initiating its arguments, the uninitiated arguments will be replaced with implicit variables declared in the class or in companion objects where the function was declared. 
+* implicit conversions: a function X with one argument of type A, and a implicit function Y with one argument of type B and returns a value of type A. X could be called with an argument of type B. B will be transformed into type A using the function Y. The same principle goes for classes and their constructors. 
+
