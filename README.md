@@ -1,5 +1,5 @@
 # Scala Cheat Sheet
-## Scala as a langage
+## Scala as a language
 Scala is a hybrid functional programming language. Scala integrates the features of object-oriented and functional languages. Scala is compiled to run on the Java Virtual Machine.
 
 ### Scala is object-oriented
@@ -23,7 +23,7 @@ Scala allows expressing general programming patterns in an effective way. It red
 ### Java Vs. Scala
 * Unlike Java, Scala is a pure object-oriented language in the sense that every value is an object.
 * Scala adopts type interference notion: types definition is not required upon variable declaration. 
-* Java doesn't have immotable variables.
+* Java doesn't have immutable variables.
 * Scala's syntax is much lighter : multiple java lignes could be reduced to one instruction in scala.  
 * Scala has lazy evaluation (will be explained later).
 * Scala supports operator overloading.
@@ -33,15 +33,45 @@ Scala allows expressing general programming patterns in an effective way. It red
 A function that takes a function as an argument, or returns a function.
 
 ## Scala syntax notions
-### What is « val » ?
+### val
 val is used to declare immutable variables: it cannot be re-affected. It has to be initiated upon declaration. 
 
 ### « val » Vs. « var »
 var is used to declare mutable variables and val is used to declare immutable variables. 
 
-### What is «Lazy» ?
+### Lazy
 A val executed when it is defined whereas a lazy val is executed when it is accessed the first time.
 
-### What are «Companion Objects» ?
+### Companion Objects
 Scala classes cannot have static variables or methods. Instead they can have singleton objects. When a singleton object is named the same as a class, it is called a companion object. A companion object must be defined inside the same source file as the class.
 
+```
+class Main {
+        def sayHelloWorld() {
+                println("Hello World") }}
+object Main {
+        def sayHi() {
+                println("Hi!") }}
+var aMain : Main = new Main()
+aMain.sayHelloWorld()
+Main.sayHi()
+```
+
+### «class» Vs. «case class» 
+A case class is good for modeling immutable data. It is useful for pattern matching. It has a default apply() method that handles object construction.
+* We can create an instance of `case class` without the keyword `new`.
+* Parameters used when creating a case class are transformed automaticly into public attributes.
+* case class re-implements the method `equals` automatically: two instances with the same parameters are equal. 
+* A case class cannot inherit a case class. 
+
+### sealed class 
+sealed class can only be inherited if the child class is defined in the same source file. 
+
+### C’est quoi «For-Comprehension» ? 
+Comprehensions have the form for (enumerators) yield e, where enumerators refer to a semicolon-separated list of enumerators. An enumerator is either a generator which introduces new variables, or a filter. The for loop used with a yield statement actually creates a List. 
+```
+case class User(name: String, age: Int)
+val userBase = List(User("Travis", 28), User("Kelly", 33), User("Jennifer", 44))
+val twentySomethings = for (user <- userBase if (user.age >=20 && user.age < 30))
+yield user.name 
+```
