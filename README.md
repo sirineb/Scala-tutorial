@@ -39,7 +39,7 @@ val is used to declare immutable variables: it cannot be re-affected. It has to 
 ### « val » Vs. « var »
 var is used to declare mutable variables and val is used to declare immutable variables. 
 
-### Lazy
+### lazy
 A val executed when it is defined whereas a lazy val is executed when it is accessed the first time.
 
 ### Companion Objects
@@ -80,3 +80,11 @@ It helps solve type ambiguity or non declared parameters. There are two types of
 * implicit parameters: considering a function that has the keyword “implicit” placed before its arguments. When such a function is called without initiating its arguments, the uninitiated arguments will be replaced with implicit variables declared in the class or in companion objects where the function was declared. 
 * implicit conversions: a function X with one argument of type A, and a implicit function Y with one argument of type B and returns a value of type A. X could be called with an argument of type B. B will be transformed into type A using the function Y. The same principle goes for classes and their constructors. 
 
+### Tail recursion
+If the last action in a recursive function is a call to the function itself, the recursive function is a tail recursion. A simple recursion allocates as many memory units as the recursions. However, Scala detects tail recursion and allocates one memory unit. The function is annotated with @tailrec. The code won’t compile if the function defined is not a tail recursion to start with. 
+
+### « map » Vs. « flatmap »
+map returns a collection of the same size as the input collection. flatMap is a combination between map and flatten: it allows returning a collection larger or smaller that the input collection elle permet de retourner une collection plus ou moins large que la collection d’entrée.
+
+### Creating an interface in scala
+Scala doesn’t have interfaces, however traits could replace them. Traits have functions signatures only.
