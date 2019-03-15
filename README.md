@@ -29,8 +29,26 @@ Scala allows expressing general programming patterns in an effective way. It red
 * Scala supports operator overloading.
 * Scala enables functional programming (Java 8 implements some aspects of functional programming, however scala provides almost every functional programming aspect).
 
-### Higher order functions
-A function that takes a function as an argument, or returns a function.
+### Function concepts
+* A call-by-name mechanism passes a code block to the call.
+* Named arguments allow passing arguments to a function in a different order.
+* Variable arguments functions allow indicating that the last parameter to a function may be repeated.
+```
+def printStrings( args:String* ) = {
+        var i : Int = 0
+        for( arg <- args ){
+                println("Arg value[" + i + "] = " + arg )
+                 i = i + 1}}
+```
+* Scala allows specifying default values for function parameters. 
+* Higher order functions take other functions as parameters, or whose result is a function.
+* Nested functions: Scala allows defining functions inside a function. 
+* Anonymous functions in source code are called function literals.
+```
+var inc = (x:Int) => x+1
+println(inc(7))
+```
+* Currying transforms a function that takes multiple parameters into a chain of functions, each taking a single parameter.
 
 ## Scala syntax notions
 ### val
@@ -95,23 +113,3 @@ It’s a mechanism allowing to detect types of variables or expressions or funct
 ### Null in Scala
 null is an object in scala. It is preferable to avoid using it. If a program uses a java method returning a null it is recommended to transform it into Option.  
 
-### Function concepts
-* A call-by-name mechanism passes a code block to the call.
-* Named arguments allow passing arguments to a function in a different order.
-* Variable arguments functions allow indicating that the last parameter to a function may be repeated.
-```
-def printStrings( args:String* ) = {
-        var i : Int = 0
-        for( arg <- args ){
-                println("Arg value[" + i + "] = " + arg )
-                 i = i + 1}}
-```
-* Scala allows specifying default values for function parameters. 
-* Higher order functions take other functions as parameters, or whose result is a function.
-* Nested functions: Scala allows defining functions inside a function. 
-* Anonymous functions in source code are called function literals.
-```
-var inc = (x:Int) => x+1
-println(inc(7))
-```
-* Currying transforms a function that takes multiple parameters into a chain of functions, each taking a single parameter.
